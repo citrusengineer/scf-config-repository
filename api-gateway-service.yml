@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: api-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: weather
+          uri: lb://weather-service
+          predicates:
+            - Method=GET
+          filters:
+            - AddRequestHeader=X-Request-red, blue
+server:
+  port: 8080
